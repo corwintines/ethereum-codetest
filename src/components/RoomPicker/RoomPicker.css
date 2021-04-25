@@ -1,0 +1,13 @@
+.RoomPickerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 800px;
+  margin: auto;
+  background-color: #c1c1c1;
+  padding: 0 20px;
+}
+
+.RoomPickerSelected {
+  font-weight: bold;
+}
