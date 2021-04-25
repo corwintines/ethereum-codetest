@@ -13,6 +13,12 @@ import { RoomsContext } from './contexts/RoomsContext'
 import { SpeakersContext } from './contexts/SpeakersContext'
 import { TalksContext } from './contexts/TalksContext'
 
+// Modules
+import Details from './modules/Details/Details'
+import Speaker from './modules/Speaker/Speaker'
+import Speakers from './modules/Speakers/Speakers'
+import Talks from './modules/Talks/Talks'
+
 // Styles
 import './App.css';
 
@@ -72,10 +78,10 @@ const App = () => {
                 <RoomsContext.Provider value={{rooms, setRooms}}>
                   <SpeakersContext.Provider value={{speakers, setSpeakers}}>
                     <TalksContext.Provider value={{talks, setTalks}}>
-                      <Route path='/' exact>Talks</Route>
-                      <Route path='/details/:id'>Details</Route>
-                      <Route path='/speakers/' exact>Speakers</Route>
-                      <Route path='/speakers/:id'>Speaker</Route>
+                      <Route path='/' exact component={Talks} />
+                      <Route path='/details/:id' component={Details} />
+                      <Route path='/speakers/' exact component={Speakers} />
+                      <Route path='/speakers/:id' component={Speaker} />
                     </TalksContext.Provider>
                   </SpeakersContext.Provider>
                 </RoomsContext.Provider>
