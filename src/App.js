@@ -30,12 +30,14 @@ const App = () => {
 
   const [event, setEvent] = useState({})
   const [favorites, setFavorites] = useState({})
+  const [loading, setLoading] = useState(false)
   const [rooms, setRooms] = useState([])
   const [speakers, setSpeakers] = useState([])
   const [talks, setTalks] = useState([])
 
   useEffect(() => {
     async function fetchData() {
+      await setLoading(true)
       const fetchedEvent = await fetchEvent()
       await setEvent(fetchedEvent)
       const fetchedRooms = await fetchRooms()
@@ -44,6 +46,7 @@ const App = () => {
       await setSpeakers(fetchedSpeakers)
       const fetchedTalks = await fetchTalks()
       await setTalks(fetchedTalks)
+      await setLoading(false)
     }
     fetchData()
   }, [])
@@ -62,21 +65,24 @@ const App = () => {
             </li>
           </ul>
         </nav>
-        <EventContext.Provider value={{event, setEvent}}>
-          <FavoritesContext.Provider value={{favorites, setFavorites}}>
-            <RoomsContext.Provider value={{rooms, setRooms}}>
-              <SpeakersContext.Provider value={{speakers, setSpeakers}}>
-                <TalksContext.Provider value={{talks, setTalks}}>
-                  <Route path='/' exact>Talks</Route>
-                  <Route path='/details/:id'>Details</Route>
-                  <Route path='/speakers/' exact>Speakers</Route>
-                  <Route path='/speakers/:id'>Speaker</Route>
-                </TalksContext.Provider>
-              </SpeakersContext.Provider>
-            </RoomsContext.Provider>
-          </FavoritesContext.Provider>
-        </EventContext.Provider>
-       
+        {
+          loading ? <div className='lds-dual-ring' /> : (
+            <EventContext.Provider value={{event, setEvent}}>
+              <FavoritesContext.Provider value={{favorites, setFavorites}}>
+                <RoomsContext.Provider value={{rooms, setRooms}}>
+                  <SpeakersContext.Provider value={{speakers, setSpeakers}}>
+                    <TalksContext.Provider value={{talks, setTalks}}>
+                      <Route path='/' exact>Talks</Route>
+                      <Route path='/details/:id'>Details</Route>
+                      <Route path='/speakers/' exact>Speakers</Route>
+                      <Route path='/speakers/:id'>Speaker</Route>
+                    </TalksContext.Provider>
+                  </SpeakersContext.Provider>
+                </RoomsContext.Provider>
+              </FavoritesContext.Provider>
+            </EventContext.Provider>
+          )
+        }
       </div>
     </Router>
   );
