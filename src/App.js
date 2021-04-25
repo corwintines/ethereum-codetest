@@ -10,19 +10,22 @@ import {
 import './App.css';
 
 const App = () => {
-
+  const navStyle = {
+    color: 'white',
+    textDecoration: 'none'
+  }
 
   return (
     <Router>
       <div>
         <nav>
           <h2>Democon</h2>
-          <ul>
+          <ul className='navLinks'>
             <li>
-              <Link to='/'>Talks</Link>
+              <Link style={navStyle} to='/'>Talks</Link>
             </li>
             <li>
-              <Link to='/speakers/'>Speakers</Link>
+              <Link style={navStyle} to='/speakers/'>Speakers</Link>
             </li>
           </ul>
         </nav>
