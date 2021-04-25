@@ -37,7 +37,7 @@ const DatePicker = (props) => {
             <div
               key={idx}
               className="DatePickerDate"
-              onClick={() => selectDate(date)}
+              onClick={() => selectDate(new Date(date))}
             >
               {
                 (
