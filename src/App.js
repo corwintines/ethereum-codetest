@@ -1,5 +1,5 @@
 // Libraries
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { 
   BrowserRouter as Router,
   Route,
@@ -16,6 +16,12 @@ import { TalksContext } from './contexts/TalksContext'
 // Styles
 import './App.css';
 
+// Utils
+import { fetchEvent } from './utils/fetchEvent'
+import { fetchRooms } from './utils/fetchRooms'
+import { fetchSpeakers } from './utils/fetchSpeakers'
+import { fetchTalks } from './utils/fetchTalks'
+
 const App = () => {
   const navStyle = {
     color: 'white',
@@ -27,6 +33,20 @@ const App = () => {
   const [rooms, setRooms] = useState([])
   const [speakers, setSpeakers] = useState([])
   const [talks, setTalks] = useState([])
+
+  useEffect(() => {
+    async function fetchData() {
+      const fetchedEvent = await fetchEvent()
+      await setEvent(fetchedEvent)
+      const fetchedRooms = await fetchRooms()
+      await setRooms(fetchedRooms)
+      const fetchedSpeakers = await fetchSpeakers()
+      await setSpeakers(fetchedSpeakers)
+      const fetchedTalks = await fetchTalks()
+      await setTalks(fetchedTalks)
+    }
+    fetchData()
+  }, [])
 
   return (
     <Router>
