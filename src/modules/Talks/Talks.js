@@ -4,6 +4,7 @@ import React, { useContext, useState } from 'react'
 // Components
 import DatePicker from '../../components/DatePicker/DatePicker'
 import RoomPicker from '../../components/RoomPicker/RoomPicker'
+import TalksPreview from '../../components/TalksPreview/TalksPreview'
 
 // Contexts
 import { EventContext } from '../../contexts/EventContext'
@@ -25,8 +26,12 @@ const Talks = () => {
       talkDate.getUTCMonth() === selectedDate.getUTCMonth() &&
       talkDate.getUTCDate() === selectedDate.getUTCDate() 
     )
+  }).sort((talk1, talk2) => {
+    let talk1Date = new Date(talk1.slot.start)
+    let talk2Date = new Date(talk2.slot.start)
+
+    return talk1Date - talk2Date
   })
-  console.log(filteredTalks)
 
   return (
     <div>
@@ -41,7 +46,16 @@ const Talks = () => {
         selectedRoom={selectedRoom}
         selectRoom={selectRoom}
       />
-      <p>Talks</p>
+      {
+        filteredTalks.map((talk) => {
+          return (
+            <TalksPreview
+              key={talk.code}
+              talk={talk}
+            />
+          )
+        })
+      }
     </div>
   )
 }
