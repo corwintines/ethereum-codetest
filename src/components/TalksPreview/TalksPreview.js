@@ -18,9 +18,11 @@ const TalksPreview = (props) => {
   return (
     <div className="TalksPreviewContainer">
       <h3>{talk.title}</h3>
-      <h5>{`${startTime.toTimeString()} - ${endTime.toTimeString()}`}</h5>
-      <p>{talk.abstract}</p>
+      <h5>{`Time: ${startTime.toTimeString()} - ${endTime.toTimeString()}`}</h5>
+      <h5>{`Duration: ${talk.duration} minutes`}</h5>
       <p>{`Speakers: ${speakers}`}</p>
+      <p>{`Abstract: ${talk.abstract}`}</p>
+      <p>{`Description: ${talk.description}`}</p>
       <Link to={`/details/${talk.code}`}>More</Link>
       <hr />
     </div>
