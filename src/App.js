@@ -15,7 +15,6 @@ import { TalksContext } from './contexts/TalksContext'
 
 // Modules
 import Details from './modules/Details/Details'
-import Speaker from './modules/Speaker/Speaker'
 import Speakers from './modules/Speakers/Speakers'
 import Talks from './modules/Talks/Talks'
 
@@ -81,7 +80,6 @@ const App = () => {
                       <Route path='/' exact component={Talks} />
                       <Route path='/details/:id' component={Details} />
                       <Route path='/speakers/' exact component={Speakers} />
-                      <Route path='/speakers/:id' component={Speaker} />
                     </TalksContext.Provider>
                   </SpeakersContext.Provider>
                 </RoomsContext.Provider>

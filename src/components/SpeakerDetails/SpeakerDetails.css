@@ -1,0 +1,6 @@
+.SpeakerDetailsContainer {
+  justify-content: space-between;
+  align-items: center;
+  max-width: 840px;
+  margin: auto;
+}
